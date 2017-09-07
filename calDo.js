@@ -1,0 +1,90 @@
+
+
+function calcStretch(stretchTo){
+
+	let week = (typeof(stretchTo) === "string"? stretchTo.length : stretchTo)
+	console.log(typeof(stretchTo))
+	let calcDist = function(leng, sym) { let len = leng, unit = sym; 
+
+				for(let i = 0; i < len; i++){
+		
+					sym += unit; 
+					
+			
+					}
+					return sym
+				}
+	return calcDist.bind(null, week)
+
+}
+
+function deepClone(obje){
+	return JSON.parse(JSON.stringify(obje))
+}
+/*
+function displayWeek(){
+	let week =  "|  M  |" + "  T  |" + "  W  |" + "  Th  |"+ "  F  |"+"  S  |"+ "  Su  |"
+	let disp = calcStretch((week))("-")
+	let redisp = disp + "\n" + week + "\n" + disp
+	function addItem(){
+
+	}
+	console.log(redisp)
+
+}
+*/
+//Current working version of function
+
+function displayWeek(state){
+	let days = deepClone(state); 
+	let dayNames = 
+	 Object.keys(days).map(function(key){ 
+					var name;
+					for(x in days[key]){
+						name = x;
+                    }
+					return name
+			 });
+	let week =  "|  M  |" + "  T  |" + "  W  |" + "  Th  |"+ "  F  |"+"  S  |"+ "  Su  |"
+	days[0].M.push(days[0].M.length)
+	let items = calcStretch((7))("| " + " |").split("||")
+	let reter = items.map(function(a, b){ return days[b] } )
+	
+	let disp = calcStretch((week))("-")
+	let redisp = disp + "\n" + week + "\n" + disp
+	
+	function addItem(){
+
+	}
+	console.log(reter)
+
+}
+
+
+Utils:
+var takeKeys = function (obj) { 
+		let mapped = Object.keys(obj).map(function(key){ 
+		var name; 
+		for(x in obj[key]){ 
+			name = x;
+		}; 
+		return name}) 
+		return mapped;
+} 
+
+
+function mapNLSpace(arr, sym){
+	return "|" + arr.map(function(a){ return "  " + a + calcStretch(0)("  |")})
+}
+undefined
+function removeCommas(arr){
+	return arr.split("").filter(function(a){ return a !== ","}).join("")
+}
+
+function mapAndRemove(arr){
+	return removeCommas((mapNLSpace(arr)))
+}
+
+//*/
+
+displayWeek();
